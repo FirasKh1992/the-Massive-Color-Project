@@ -1,7 +1,6 @@
 import chroma from 'chroma-js';
 
-
-let levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
 
 
@@ -17,8 +16,11 @@ function generatePalette(starterPalette) {
 
     }
     for (let color of starterPalette.colors) {
-        let scale = genScale(color.color, 10).reverse();
-        for (let i of scale) {
+      
+        let scale = getScale(color.color, 10).reverse();
+     
+        for (let i=0;i<scale.length;i++) {
+           
             newPalette.colors[levels[i]].push({
                 name: `${color.name} ${levels[i]}`,
                 id: color.name.toLowerCase().replace(/ /g, "-"), // replace space globaly to -
@@ -27,12 +29,9 @@ function generatePalette(starterPalette) {
                 rgba: chroma(scale[i])
                     .css()
                     .replace("rgb", "rgba")
-                    .replace(")", "0.1)")
+                    .replace(")", "1.0)")
             });
-
         }
-
-
     }
     return newPalette;
 }
@@ -46,7 +45,7 @@ function getRange(hexColor) {
         end
     ];
 }
-function genScale(hexColor, numberOfColors) {
+function getScale(hexColor, numberOfColors) {
     return chroma
         .scale(getRange(hexColor))
         .mode("lab")
