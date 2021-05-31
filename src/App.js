@@ -1,5 +1,6 @@
 import Pallete from './Palette';
 import seedColors from './seedColors';
+import {generatePalette} from "./colorHelpers"
 
 function App() {
   return (
