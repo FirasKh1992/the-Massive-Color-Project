@@ -33,19 +33,20 @@ class Palette extends Component {
             <ColorBox background={color[format]} name={color.name} key={color.id} />
         ));
         return (
-            <div className='Palette'>
-                <Navbar level={level} changeLevel={this.changeLevel} handleChange={this.changeFormat} />
+            <div>
+                <div className='Palette'>
+                    <Navbar level={level} changeLevel={this.changeLevel} handleChange={this.changeFormat} />
 
-                <div className="palette-colors">
-                    {colorBoxes}
-                    <ColorBox />
+                    <div className="palette-colors">
+                        {colorBoxes}
+                    </div>
+
                 </div>
                 <footer className="Palette-footer">
                     {paletteName}
                     <span className='emoji'> {emoji}</span>
                 </footer>
             </div>
-
         )
     }
 }
