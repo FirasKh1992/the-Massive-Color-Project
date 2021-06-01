@@ -30,7 +30,7 @@ const styles = {
     },
     emoji: {
         marginLeft: "0.5rem",
-        fontSize:"1.5rem"
+        fontSize: "1.5rem"
     }
 }
 function MiniPalette(props) {
