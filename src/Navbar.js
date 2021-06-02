@@ -4,33 +4,33 @@ import Slider from 'rc-slider';
 import './Navbar.css'
 import { IconButton, MenuItem, Select, Snackbar } from '@material-ui/core';
 import CloseIcon from "@material-ui/icons/Close"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = { format: "hex", open: false };
         this.handleFormatChange = this.handleFormatChange.bind(this);
-        this.closeSnackbar=this.closeSnackbar.bind(this)
+        this.closeSnackbar = this.closeSnackbar.bind(this);
     }
 
     handleFormatChange(e) {
-        this.setState({ format: e.target.value,open:true });
-        this.props.handleChange(e.target.value)
-        this.closeSnackbar=this.closeSnackbar.bind(this);
+        this.setState({ format: e.target.value, open: true });
+        this.props.handleChange(e.target.value);
+        this.closeSnackbar = this.closeSnackbar.bind(this);
     }
-    closeSnackbar(){
-        this.setState({open:false});
+    closeSnackbar() {
+        this.setState({ open: false });
     }
     render() {
-        const { level, changeLevel } = this.props;
+        const { level, changeLevel, showingAllColors } = this.props;
         const { format, open } = this.state;
         return (
             <div className="Navbar">
                 <div className='logo'>
                     <Link to='/'>reactcolorpicker</Link>
                 </div>
-                <div className="slider-container">
+                { showingAllColors && <div className="slider-container">
                     <span>level:{level}</span>
                     <div className="slider">
                         <Slider
@@ -42,6 +42,7 @@ class Navbar extends Component {
                         />
                     </div>
                 </div>
+                }
                 <div className="select-container">
                     <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value='hex'>HEX - #ffffff</MenuItem>
@@ -54,16 +55,17 @@ class Navbar extends Component {
                     open={open}
                     autoHideDuration={3000}
                     message={<span id="message-id">Format Changed to {format}</span>}
-                    ContentProps={{"aria-describedby":"message-id"
+                    ContentProps={{
+                        "aria-describedby": "message-id"
                     }}
                     onClose={this.closeSnackbar}
                     action={[
                         <IconButton onClick={this.closeSnackbar} color="inherit" key="close" aria-label="close">
-                            <CloseIcon/>
+                            <CloseIcon />
                         </IconButton>
                     ]}
-                    >
-                    
+                >
+
                 </Snackbar>
 
             </div>
