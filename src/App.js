@@ -15,12 +15,12 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact
+        <Route
+          exact
           path='/'
-          render={() => <PaletteList
-            palettes={seedColors}
-             />//closing for paletteList Component
-             } />
+          render={ routeProps => (
+          <PaletteList palettes={seedColors} {...routeProps} />//closing for paletteList Component
+           ) } />
         <Route
           exact
           path='/palette/:id'
