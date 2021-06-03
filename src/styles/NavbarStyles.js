@@ -1,4 +1,4 @@
-export default  {
+const styles= {
     Navbar: {
         display: "flex",
         alignItems: " center",
@@ -16,7 +16,7 @@ export default  {
         display: "flex",
         alignItems: "center",
         margin: " 0 10px",
-        display: "inline-block",
+        displayContent: "inline-block",
         "& a": {
             textDecoration: "none",
             color: "black"
@@ -52,3 +52,5 @@ export default  {
     }
 
 }
+
+export default styles;

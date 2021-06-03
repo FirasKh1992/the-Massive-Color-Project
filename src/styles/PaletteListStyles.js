@@ -1,4 +1,4 @@
-export default{
+const styles={
     root: {
         backgroundColor:"blue",
         height:"100vh",
@@ -21,7 +21,6 @@ export default{
         justifyContent:"space-between",
         color:"white",
         alignItems:"center",
-        color:"white",
         "& a":{
             color:"white"
         }
@@ -36,3 +35,5 @@ export default{
 
     }
 }
+
+export default styles;

@@ -1,6 +1,6 @@
 import chroma from 'chroma-js';
 
-export default {
+const ColorBoxStyles = {
     colorBox: {
         height: props => props.showingFullPalette ? "25%" : "50%",
         width: "20%",
@@ -117,3 +117,4 @@ export default {
         transitionDelay: "0.3s"
     }
 }
+export default ColorBoxStyles;

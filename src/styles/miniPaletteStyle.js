@@ -1,4 +1,4 @@
-export default{
+const styles={
    
         root: {
             backgroundColor: "white",
@@ -44,3 +44,5 @@ export default{
         }
     
 }
+
+export default styles;
