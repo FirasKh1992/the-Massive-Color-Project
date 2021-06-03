@@ -11,8 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { ChromePicker } from 'react-color'
 import Button from "@material-ui/core/Button";
+import { ChromePicker } from 'react-color'
 const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
@@ -72,9 +72,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function NewPaletteForm() {
+function NewPaletteForm(props) {
     const classes = useStyles();
+    const [currentColor, setColor] = React.useState('teal');
+    const [colors, setNewColor] = React.useState(['purple', '#e15764'])
     const theme = useTheme();
+
+
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -84,7 +88,13 @@ export default function NewPaletteForm() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    const updateCurrentColor = (newColor) => {
 
+        setColor(newColor.hex);
+    }
+    function addNewColor() {
+        setNewColor(oldColors => [...oldColors, currentColor])
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -128,11 +138,15 @@ export default function NewPaletteForm() {
                     Design your palette
                 </Typography>
                 <div>
-                <Button variant='contained' color='secondary'> Clear Palette</Button>
-                <Button variant='contained' color='primary'> Random Color</Button>
+                    <Button variant='contained' color='secondary'> Clear Palette</Button>
+                    <Button variant='contained' color='primary'> Random Color</Button>
                 </div>
-                < ChromePicker color='purple' onChangeComplete={(newColor) => console.log(newColor)} />
-                <Button variant='contained' color='primary'> Add Color</Button>
+
+                < ChromePicker color={currentColor} onChangeComplete={updateCurrentColor} />
+                <Button
+                    variant='contained'
+                    color='primary' style={{ backgroundColor: currentColor }} onClick={addNewColor}>
+                    Add Color</Button>
 
             </Drawer>
             <main
@@ -141,8 +155,21 @@ export default function NewPaletteForm() {
                 })}
             >
                 <div className={classes.drawerHeader} />
-
+                <ul>
+                    {colors.map(color =>
+                    <li style={{backgroundColor:color}}>
+                        {color}
+                    </li>
+                    )}
+                </ul>
+                {/* <ul>
+                    {colors.map(color => (
+                        <li style={‌{backgroundColor: color}}>{color}</li>
+          ))}
+          </ul> */}
             </main>
-        </div>
+        </div >
     );
 }
+
+export default NewPaletteForm;
