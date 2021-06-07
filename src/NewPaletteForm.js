@@ -13,9 +13,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from "@material-ui/core/Button";
 import { ChromePicker } from 'react-color';
-import DragableColorBox from './DragableColorBox'
+
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import useInputState from './hooks/useInputState'
+import DraggableColorList from './DraggableColorList';
+import useInputState from './hooks/useInputState';
+import { arrayMove } from 'react-sortable-hoc'
 const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
@@ -127,11 +129,15 @@ function NewPaletteForm(props) {
         setColors(oldColors => [...oldColors, newColor])
         resetColorName();
     }
-function removeColor(colorName){
-    setColors(colors.filter(color =>(
-        color.name !== colorName
-    )))
-}
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        setColors(arrayMove(colors, oldIndex, newIndex))
+
+    };
+    function removeColor(colorName) {
+        setColors(colors.filter(color => (
+            color.name !== colorName
+        )))
+    }
     function handleSubmit() {
         let PaletteName = newPaletteName;
         const newPalette = {
@@ -229,15 +235,13 @@ function removeColor(colorName){
                 })}
             >
                 <div className={classes.drawerHeader} />
+                <DraggableColorList
+                 axis="xy" 
+                 colors={colors}
+                  removeColor={removeColor}
+                  onSortEnd={onSortEnd}
+                   />
 
-                {colors.map(color => (
-                    <DragableColorBox 
-                    key={color.name}
-                    color={color.color} 
-                    name={color.name} 
-                    handleClick={() => (
-                        removeColor(color.name))} />
-                ))}
             </main>
         </div >
     );
