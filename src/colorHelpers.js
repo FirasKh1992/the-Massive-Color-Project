@@ -16,7 +16,7 @@ function generatePalette(starterPalette) {
 
     }
     for (let color of starterPalette.colors) {
-      
+         console.dir(color)         
         let scale = getScale(color.color, 10).reverse();
      
         for (let i=0;i<scale.length;i++) {
