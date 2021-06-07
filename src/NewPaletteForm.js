@@ -79,18 +79,11 @@ const useStyles = makeStyles((theme) => ({
 function NewPaletteForm(props) {
     const classes = useStyles();
     const [currentColor, setColor] = useState('teal');
-    const [colors, setNewColor] = useState([]);
+    const [colors, setColors] = useState([]);
     const [newColorName, handleColorChange, resetColorName] = useInputState("");
     const [newPaletteName, handlePalleteNameChange] = useInputState("");
 
-    const theme = useTheme();
 
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
 
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -104,14 +97,22 @@ function NewPaletteForm(props) {
                 ({ color }) => color !== currentColor
             );
         });
-        
+
         ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
             return props.palettes.every(
-                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()  
+                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
             );
         });
     });
 
+    const theme = useTheme();
+
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
 
     const handleDrawerClose = () => {
         setOpen(false);
@@ -123,14 +124,14 @@ function NewPaletteForm(props) {
 
     function addNewColor() {
         const newColor = { color: currentColor, name: newColorName }
-        setNewColor(oldColors => [...oldColors, newColor])
+        setColors(oldColors => [...oldColors, newColor])
         resetColorName();
     }
-
-    // function handleChange(evt) {
-    //     setNewName(evt.target.value)
-
-    // }
+function removeColor(colorName){
+    setColors(colors.filter(color =>(
+        color.name !== colorName
+    )))
+}
     function handleSubmit() {
         let PaletteName = newPaletteName;
         const newPalette = {
@@ -171,8 +172,8 @@ function NewPaletteForm(props) {
                             name="newPaletteName"
                             value={newPaletteName}
                             onChange={handlePalleteNameChange}
-                            validators={["required","isPaletteNameUnique"]}
-                            errorMessages={["Enter Palette name","Palette name had been used"]}
+                            validators={["required", "isPaletteNameUnique"]}
+                            errorMessages={["Enter Palette name", "Palette name had been used"]}
                         />
 
                         <Button variant='contained' color='primary' type='submit'>Save Palette</Button>
@@ -229,9 +230,13 @@ function NewPaletteForm(props) {
             >
                 <div className={classes.drawerHeader} />
 
-
                 {colors.map(color => (
-                    <DragableColorBox color={color.color} name={color.name} />
+                    <DragableColorBox 
+                    key={color.name}
+                    color={color.color} 
+                    name={color.name} 
+                    handleClick={() => (
+                        removeColor(color.name))} />
                 ))}
             </main>
         </div >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mergeClasses, withStyles } from '@material-ui/styles';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutlined'
-import transitions from '@material-ui/core/styles/transitions';
+
 const styles = {
     root: {
         height: "25%",
@@ -36,14 +36,14 @@ const styles = {
     }
 }
 function DragableColoBox(props) {
-    const { classes } = props;
+    const { classes,handleClick,name,color } = props;
     return (
         <div
             className={classes.root}
-            style={{ backgroundColor: props.color }}>
+            style={{ backgroundColor: color }}>
             <div className={classes.boxContent}>
-               <span>{props.name}</span> 
-              <DeleteOutlineIcon className={classes.deleteIcon}/>
+               <span>{name}</span> 
+              <DeleteOutlineIcon className={classes.deleteIcon} onClick={handleClick}/>
             </div>
         </div>
 
