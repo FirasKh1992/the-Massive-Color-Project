@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { withStyles } from "@material-ui/styles";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -27,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         flexDirection: "row",
-        justifyContent:"space-between",
-        height:"64px"
+        justifyContent: "space-between",
+        height: "64px"
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -85,36 +84,36 @@ function PaletteFormNav(props) {
                     <Typography variant="h6" noWrap>
                         Create A Palette
                     </Typography>
-                
+
                 </Toolbar>
                 <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
-                            <TextValidator
-                                label="Palette name"
-                                name="newPaletteName"
-                                value={newPaletteName}
-                                onChange={handlePalleteNameChange}
-                                validators={["required", "isPaletteNameUnique"]}
-                                errorMessages={["Enter Palette name", "Palette name had been used"]}
-                            />
+                    <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+                        <TextValidator
+                            label="Palette name"
+                            name="newPaletteName"
+                            value={newPaletteName}
+                            onChange={handlePalleteNameChange}
+                            validators={["required", "isPaletteNameUnique"]}
+                            errorMessages={["Enter Palette name", "Palette name had been used"]}
+                        />
 
-                            <Button
-                                variant='contained'
-                                color='primary'
-                                type='submit'>
-                                Save Palette
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            type='submit'>
+                            Save Palette
                         </Button>
 
-                        </ValidatorForm>
-                        <Link to='/'>
-                            <Button
-                                variant='contained'
-                                color='secondary'
-                            >
-                                "Go Back"
+                    </ValidatorForm>
+                    <Link to='/'>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                        >
+                            "Go Back"
                             </Button>
-                        </Link>
-                    </div>
+                    </Link>
+                </div>
             </AppBar>
         </div>
     )

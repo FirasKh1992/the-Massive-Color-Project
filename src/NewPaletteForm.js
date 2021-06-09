@@ -17,6 +17,7 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import usePaletteFormHook from './hooks/usePaletteFormHook';
+import { mergeClasses } from '@material-ui/styles';
 
 
 const drawerWidth = 400;
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-   
+
     hide: {
         display: 'none',
     },
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        display:"flex",
+        alignItems:"center"
     },
     drawerHeader: {
         display: 'flex',
@@ -61,13 +64,27 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 0,
     },
+    container:{
+        width:"90%",
+        height:"100%",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    buttons:{
+        width:"100%"
+    },
+    button:{
+        wisth:"50%"
+    }
 }));
 
 function NewPaletteForm(props) {
     const { palettes, maxColors, savePalette, history } = props;
     const classes = useStyles();
 
-    const { 
+    const {
         colors,
         addNewColor,
         onSortEnd,
@@ -79,8 +96,8 @@ function NewPaletteForm(props) {
         handleDrawerClose,
     } = usePaletteFormHook(palettes);
 
-    
-    
+
+
     const paletteIsFull = colors.length >= maxColors;
 
 
@@ -125,33 +142,36 @@ function NewPaletteForm(props) {
                     </IconButton>
                 </div>
                 <Divider />
-                <Typography variant="h4">
-                    Design your palette
-                </Typography>
-                <div>
-                    <Button
-                        variant='contained'
-                        color='secondary'
-                        onClick={clearColors}
-                    > Clear Palette
+                <div className={classes.container}>
+                    <Typography variant="h4" gutterBottom>
+                        Design your palette
+                    </Typography>
+                    <div className={classes.buttons}>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                            onClick={clearColors}
+                            className={classes.button}
+                        > Clear Palette
                     </Button>
-                    <Button
-                        variant='contained'
-                        color='primary'
-                        onClick={addRandomColor}
-                        disabled={paletteIsFull}
-                    > Random Color
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            className={classes.button}
+                            onClick={addRandomColor}
+                            disabled={paletteIsFull}
+                        > Random Color
                      </Button>
 
+                    </div>
+
+                    <ColorPickerForm
+                        addNewColor={addNewColor}
+                        paletteIsFull={paletteIsFull}
+                        colors={colors}
+                    />
+
                 </div>
-
-                <ColorPickerForm
-                    addNewColor={addNewColor}
-                    paletteIsFull={paletteIsFull}
-                    colors={colors}
-                />
-
-
             </Drawer>
             <main
                 className={clsx(classes.content, {
