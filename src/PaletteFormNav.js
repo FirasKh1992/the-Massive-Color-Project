@@ -1,29 +1,33 @@
 
+import {useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
 import Button from "@material-ui/core/Button";
-
-
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import useInputState from './hooks/useInputState';
 
 
 function PaletteFormNav(props){
-     
-    const {classes,open,handleDrawerOpen,handleSubmit} = props;
     const [newPaletteName, handlePalleteNameChange] = useInputState("");
-    
+    const {classes,open,handleDrawerOpen,handleSubmit,palettes} = props;
+  
+    useEffect(() => {
+       
+        ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
+            return palettes.every(
+                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+            );
+        });
+    });
+
 
     return(
      <div>

@@ -1,23 +1,16 @@
-import React,{useState} from 'react';
+import {useState} from 'react';
 import { arrayMove } from 'react-sortable-hoc'
-import useInputState from './useInputState'
-export default initialPalettes => {
-    const [currentColor, setColor] = useState('teal');
+
+const usePaletteFormHook= initialPalettes => {
+    
     const [colors, setColors] = useState(initialPalettes[0].colors);
-    const [newColorName, handleColorChange, resetColorName] = useInputState("");
+    const [open, setOpen] = useState(false);
     
     return {
         colors,
-        currentColor,
-        updateCurrentColor: newColor => {
-
-            setColor(newColor.hex);
-        },
-
-        addNewColor: () => {
-            const newColor = { color: currentColor, name: newColorName }
+        open,
+        addNewColor: (newColor) => {
             setColors(oldColors => [...oldColors, newColor])
-            resetColorName();
         },
         onSortEnd: ({ oldIndex, newIndex }) => {
             setColors(arrayMove(colors, oldIndex, newIndex))
@@ -36,7 +29,15 @@ export default initialPalettes => {
             let rand = Math.floor(Math.random() * allColors.length);
             let randColor = allColors[rand]
             setColors(oldColors => [...colors, randColor]);
+        },
+        handleDrawerOpen : () => {
+            setOpen(true);
+        },
+        handleDrawerClose : () => {
+            setOpen(false);
         }
    
     }
 }
+
+export default usePaletteFormHook;
