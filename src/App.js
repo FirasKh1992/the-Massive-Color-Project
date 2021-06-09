@@ -7,11 +7,11 @@ import NewPaletteForm from './NewPaletteForm'
 
 import { generatePalette } from "./colorHelpers";
 import { Route, Switch } from 'react-router-dom';
-
+import useLocalStorageState from './hooks/useLocalStorageState'
 
 function App() {
   
-  const [palettes, AddPalette]=useState(seedColors)
+  const [palettes, AddPalette]=useLocalStorageState("palettes",seedColors);
   function FindPalette(id) {
     return palettes.find(function (palette) {
       return palette.id === id;
@@ -20,8 +20,6 @@ function App() {
   function savePalette(Palette){
     let newPaletteList=[...palettes,Palette];
     AddPalette(newPaletteList);
-   
-  
   }
 
   return (
