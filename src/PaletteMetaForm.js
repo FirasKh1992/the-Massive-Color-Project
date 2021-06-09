@@ -8,32 +8,43 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import useInputState from './hooks/useInputState';
-import {Picker} from 'emoji-mart'
+import { Picker } from 'emoji-mart'
 import 'emoji-mart/css/emoji-mart.css'
 function PaletteMetaForm(props) {
-    const { handleSubmit ,hideForm} = props;
+    const { handleSubmit, hideForm } = props;
     const [open, setOpen] = useState(true);
+    const [stage, setStage] = useState('form')
     const [newPaletteName, handlePalleteNameChange] = useInputState("");
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+
 
     const handleClose = () => {
         setOpen(false);
     };
+    const savePalette = (emoji) => {
+        const newPalette = { paletteName: newPaletteName, emoji: emoji.native }
+        handleSubmit(newPalette);
 
+    }
+    const showeEmojiPicker = () => {
+        setStage('emoji');
+
+    }
     return (
-    
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onClose={hideForm}>
+        <div>
+            <Dialog open={stage === 'emoji'}>
+                <DialogTitle id="form-dialog-title">Choose Palette emoji</DialogTitle>
+                <Picker title="Pick a Palette emoji " onSelect={savePalette} />
+            </Dialog>
+            <Dialog open={stage === 'form'} onClose={handleClose} aria-labelledby="form-dialog-title" onClose={hideForm}>
                 <DialogTitle id="form-dialog-title">Choose Palette name</DialogTitle>
-                <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+                <ValidatorForm onSubmit={showeEmojiPicker}>
                     <DialogContent>
                         <DialogContentText>
-                           Please enter a name for your new beautiful palette.Make sure 
-                           it's unique!.
+                            Please enter a name for your new beautiful palette.Make sure
+                            it's unique!.
             </DialogContentText>
-                    <Picker/>
+
                         <TextValidator
                             label="Palette name"
                             name="newPaletteName"
@@ -61,7 +72,7 @@ function PaletteMetaForm(props) {
                     </DialogActions>
                 </ValidatorForm>
             </Dialog>
-     
+        </div>
     );
 }
 
