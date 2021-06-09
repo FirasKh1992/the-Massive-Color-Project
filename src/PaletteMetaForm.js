@@ -11,15 +11,13 @@ import { Picker } from 'emoji-mart'
 import 'emoji-mart/css/emoji-mart.css'
 function PaletteMetaForm(props) {
     const { handleSubmit, hideForm } = props;
-    const [open, setOpen] = useState(true);
+   
     const [stage, setStage] = useState('form')
     const [newPaletteName, handlePalleteNameChange] = useInputState("");
 
 
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+
     const savePalette = (emoji) => {
         const newPalette = { paletteName: newPaletteName, emoji: emoji.native }
         handleSubmit(newPalette);
@@ -35,7 +33,7 @@ function PaletteMetaForm(props) {
                 <DialogTitle id="form-dialog-title">Choose Palette emoji</DialogTitle>
                 <Picker title="Pick a Palette emoji " onSelect={savePalette} />
             </Dialog>
-            <Dialog open={stage === 'form'} onClose={handleClose} aria-labelledby="form-dialog-title" onClose={hideForm}>
+            <Dialog open={stage === 'form'} aria-labelledby="form-dialog-title" onClose={hideForm}>
                 <DialogTitle id="form-dialog-title">Choose Palette name</DialogTitle>
                 <ValidatorForm onSubmit={showeEmojiPicker}>
                     <DialogContent>

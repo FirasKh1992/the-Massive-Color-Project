@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Palette from './Palette';
 import seedColors from './seedColors';
 import PaletteList from './PaletteList'
@@ -10,16 +10,21 @@ import { Route, Switch } from 'react-router-dom';
 import useLocalStorageState from './hooks/useLocalStorageState'
 
 function App() {
-  
-  const [palettes, AddPalette]=useLocalStorageState("palettes",seedColors);
+
+  const [palettes, setPalette] = useLocalStorageState("palettes", seedColors);
   function FindPalette(id) {
     return palettes.find(function (palette) {
       return palette.id === id;
     });
   }
-  function savePalette(Palette){
-    let newPaletteList=[...palettes,Palette];
-    AddPalette(newPaletteList);
+  function savePalette(Palette) {
+    let newPaletteList = [...palettes, Palette];
+    setPalette(newPaletteList);
+  }
+
+  function deletePalette(id) {
+    const updatedPalettes = palettes.filter((palette) => palette.id !== id);
+    setPalette(updatedPalettes);
   }
 
   return (
@@ -28,13 +33,13 @@ function App() {
         <Route
           exact
           path="/palette/new"
-          render={(routeProps) => (<NewPaletteForm savePalette={savePalette} {...routeProps}  palettes={palettes} />)}
+          render={(routeProps) => (<NewPaletteForm savePalette={savePalette} {...routeProps} palettes={palettes} />)}
         />
         <Route
           exact
           path='/'
           render={(routeProps) => (
-            <PaletteList palettes={palettes} {...routeProps} />//closing for paletteList Component
+            <PaletteList palettes={palettes} {...routeProps} deletePalette={deletePalette} />//closing for paletteList Component
           )} />
         <Route
           exact

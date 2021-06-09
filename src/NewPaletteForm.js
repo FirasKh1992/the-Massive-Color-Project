@@ -17,7 +17,6 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import usePaletteFormHook from './hooks/usePaletteFormHook';
-import { mergeClasses } from '@material-ui/styles';
  import useStyles from './styles/newPaletteFormStyles'
 
 
