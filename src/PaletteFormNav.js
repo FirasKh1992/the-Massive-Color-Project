@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
         }),
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems:"center",
         height: "64px"
     },
     appBarShift: {
@@ -39,14 +40,22 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     navBtns: {
-
+        marginRight:"1rem",
+        "& a":{
+        textDecoration:"none"
+    }
+    },
+    button:{
+        margin: "0 0.5rem"
+        
     }
 }))
 
 
 function PaletteFormNav(props) {
-  
+
     const { open, handleDrawerOpen, handleSubmit, palettes } = props;
+    const [formShowing,setFormshowing]=useState(false);
     const classes = useStyles();
 
     useEffect(() => {
@@ -57,6 +66,10 @@ function PaletteFormNav(props) {
             );
         });
     });
+
+    function showForm(){
+        setFormshowing(true);
+    }
 
 
     return (
@@ -85,20 +98,22 @@ function PaletteFormNav(props) {
 
                 </Toolbar>
                 <div className={classes.navBtns}>
-           
-
-
-                    < PaletteMetaForm handleSubmit={handleSubmit}/>
                     <Link to='/'>
                         <Button
                             variant='contained'
                             color='secondary'
+                            className={classes.button}
                         >
-                            "Go Back"
+                            Go Back
                             </Button>
                     </Link>
+                    <Button variant="contained" color="primary" onClick={showForm} className={classes.button}>
+                      Save
+        </Button>
                 </div>
             </AppBar>
+
+           {formShowing && < PaletteMetaForm handleSubmit={handleSubmit} />}
         </div>
     )
 
