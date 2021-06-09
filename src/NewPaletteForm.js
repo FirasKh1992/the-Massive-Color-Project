@@ -20,7 +20,7 @@ import usePaletteFormHook from './hooks/usePaletteFormHook';
 import { mergeClasses } from '@material-ui/styles';
  import useStyles from './styles/newPaletteFormStyles'
 
-const drawerWidth = 400;
+
 
 
 
