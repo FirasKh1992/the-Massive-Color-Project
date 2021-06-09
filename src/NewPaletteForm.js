@@ -17,29 +17,15 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import usePaletteFormHook from './hooks/usePaletteFormHook';
+
+
 const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
+   
     hide: {
         display: 'none',
     },
@@ -119,7 +105,6 @@ function NewPaletteForm(props) {
         <div className={classes.root}>
             <PaletteFormNav
                 handleDrawerOpen={handleDrawerOpen}
-                classes={classes}
                 open={open}
                 handleSubmit={handleSubmit}
                 colors={colors}
