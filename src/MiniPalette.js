@@ -1,9 +1,9 @@
 import React from 'react'
 import { withStyles } from '@material-ui/styles'
 import styles from './styles/miniPaletteStyle'
-import DeleteIcon from "@material-ui/icons/Delete"
+import DeleteIcon from "@material-ui/icons/DeleteRounded"
 function MiniPalette(props) {
-    const { classes, paletteName, emoji, colors, handleClick,handleDelete,id,openDialog} = props;
+    const { classes, paletteName, emoji, colors, handleClick,id,openDialog} = props;
 
     const miniColorBoxes = colors.map(color => (
         <div
