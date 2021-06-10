@@ -1,9 +1,7 @@
 import bg from './bg.svg'
 const styles = {
     "@global": {
-        ".fade-exit": {
-            opacity: 1,
-        },
+        
         ".fade-exit-active": {
             opacity: 0,
             transition: "opacity 500ms ease-out"
