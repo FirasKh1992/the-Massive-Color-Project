@@ -123,6 +123,7 @@ function NewPaletteForm(props) {
                     colors={colors}
                     removeColor={removeColor}
                     onSortEnd={onSortEnd}
+                    distance={20}
                 />
 
             </main>
