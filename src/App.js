@@ -8,9 +8,9 @@ import NewPaletteForm from './NewPaletteForm'
 import { generatePalette } from "./colorHelpers";
 import { Route, Switch } from 'react-router-dom';
 import useLocalStorageState from './hooks/useLocalStorageState'
-
+import sizes from './styles/sizes';
 function App() {
-
+ 
   const [palettes, setPalette] = useLocalStorageState("palettes", seedColors);
   function FindPalette(id) {
     return palettes.find(function (palette) {
