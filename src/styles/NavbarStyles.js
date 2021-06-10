@@ -20,7 +20,10 @@ const styles= {
         "& a": {
             textDecoration: "none",
             color: "black"
-        }
+        },
+        "@media (max-width: 575.98px)": {
+            display:"none"
+        },
     },
 
 
@@ -44,7 +47,11 @@ const styles= {
             height: "13px",
             marginLeft: "-7px",
             marginTop: "-2px",
-        }
+        },
+        "@media (max-width: 991.98px)": {
+            width:"150px"
+            
+        },
     },
     selectContainer:{
         marginLeft: "auto",

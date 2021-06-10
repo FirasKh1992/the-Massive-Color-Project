@@ -93,7 +93,7 @@ const ColorBoxStyles = {
             padding: "1rem",
             textTransform: "uppercase",
             "@media (max-width: 575.98px)": {
-               fontSize:"5rem", 
+               fontSize:"5rem",  
                 
             },
         },
