@@ -1,8 +1,6 @@
 import chroma from 'chroma-js';
-// import sizes from './sizes';
 
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 const ColorBoxStyles = {
     copyText: {
@@ -94,6 +92,10 @@ const ColorBoxStyles = {
             marginBottom: "0",
             padding: "1rem",
             textTransform: "uppercase",
+            "@media (max-width: 575.98px)": {
+               fontSize:"5rem", 
+                
+            },
         },
         "& p": {
             fontSize: "2rem",
@@ -121,12 +123,12 @@ const ColorBoxStyles = {
         },
         "@media (max-width: 1199.98px)": {
             width: "25%",
-            height: props => props.showingFullPalette ? "20%" : "50%"
+            height: props => props.showingFullPalette ? "20%" : "33.3333333%"
             
         },
         "@media (max-width: 991.98px)": {
             width: "50%",
-            height: props => props.showingFullPalette ? "10%" : "50%"
+            height: props => props.showingFullPalette ? "10%" : "20%"
         },
         "@media (max-width: 575.98px)": {
             width: "100%",
@@ -138,17 +140,3 @@ const ColorBoxStyles = {
 }
 export default ColorBoxStyles;
 
-
-
-    //     [sizes.down["md"]]:{
-    //         width:"50%",
-    //         height: props => props.showingFullPalette ? "10%" : "50%"
-    //     },
-    //     [sizes.down("xs")]: {
-    //         width: "100%",
-    //         height: props => props.showingFullPalette ? "5%" : "10%"
-    //     },
-    //     [sizes.down["lg"]]:{
-    //         width:"25%",
-    //         height: props => props.showingFullPalette ? "20%" : "25%"
-    //     }

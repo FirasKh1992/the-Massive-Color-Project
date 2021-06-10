@@ -35,10 +35,24 @@ const styles={
             lineHeight: "30px",
             textTransform: "uppercase",
             border: "none",
-            textDecoration: "none",
+            textDecoration: "none"
 
+        },
+        "@media (max-width: 1199.98px)": {
+            width: "25%",
+            height: "33.3333333%"
+            
+        },
+        "@media (max-width: 991.98px)": {
+            width: "50%",
+            height: "20%"
+        },
+        "@media (max-width: 575.98px)": {
+            width: "100%",
+            height: "10%"
+            
         }
-
+    
     }
 
 }
