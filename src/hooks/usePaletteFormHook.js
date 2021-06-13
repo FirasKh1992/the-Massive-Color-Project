@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import { arrayMove } from 'react-sortable-hoc'
 
+
+
 const usePaletteFormHook= initialPalettes => {
     
     const [colors, setColors] = useState(initialPalettes[0].colors);

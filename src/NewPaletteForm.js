@@ -17,8 +17,8 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import usePaletteFormHook from './hooks/usePaletteFormHook';
- import useStyles from './styles/newPaletteFormStyles'
-
+import useStyles from './styles/newPaletteFormStyles'
+import seedColors from './seedColors'
 
 
 
@@ -37,7 +37,7 @@ function NewPaletteForm(props) {
         open,
         handleDrawerOpen,
         handleDrawerClose,
-    } = usePaletteFormHook(palettes);
+    } = usePaletteFormHook(seedColors);
 
 
 
@@ -50,8 +50,8 @@ function NewPaletteForm(props) {
 
 
     const handleSubmit = (newPalette) => {
-        newPalette.id=newPalette.paletteName.toLowerCase().replace(/ /g, "-");
-        newPalette.colors=colors;
+        newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+        newPalette.colors = colors;
         savePalette(newPalette);
         history.push('/');
 
