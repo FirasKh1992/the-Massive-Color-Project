@@ -10,7 +10,7 @@ import { Route, Switch } from 'react-router-dom';
 import useLocalStorageState from './hooks/useLocalStorageState'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Page from './Page'
-import './styles/page.css'
+
 function App() {
 
   const [palettes, setPalette] = useLocalStorageState("palettes", seedColors);

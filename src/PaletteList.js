@@ -54,8 +54,7 @@ function PaletteList(props) {
                         <CSSTransition key={palette.id} classNames='fade' timeout={500}>
                             <MiniPalette
                                 {...palette}
-                                handleClick={() => goToPalette(palette.id)}
-                               
+                                goToPalette={goToPalette}
                                 openDialog={openDialog}
                                 key={palette.id}
                                 id={palette.id} />
@@ -92,4 +91,4 @@ function PaletteList(props) {
         </div>
     )
 }
-export default withStyles(styles)(PaletteList);
+export default withStyles(styles) (PaletteList);
