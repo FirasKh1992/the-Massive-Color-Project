@@ -21,7 +21,7 @@ function App() {
       return palette.id === id;
     });
   }
-  
+
   function savePalette(Palette) {
     let newPaletteList = [...palettes, Palette];
     setPalette(newPaletteList);
@@ -85,8 +85,16 @@ function App() {
                         FindPalette(routeProps.match.params.paletteId)
                       )}
                     />
+
                   </Page>
                 )}
+            />
+            <Route
+              render={(routeProps) => (
+                <Page>
+                  <PaletteList palettes={palettes} {...routeProps} deletePalette={deletePalette} />//closing for paletteList Component
+                </Page>
+              )}
             />
           </Switch>
         </CSSTransition>

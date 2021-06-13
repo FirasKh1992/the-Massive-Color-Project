@@ -28,8 +28,14 @@ const usePaletteFormHook= initialPalettes => {
         },
         addRandomColor:()=> {
             const allColors = initialPalettes.map(p => p.colors).flat();
-            let rand = Math.floor(Math.random() * allColors.length);
-            let randColor = allColors[rand]
+            let rand ;
+            let randColor;
+            let isDuplicateColor=true;
+            while(isDuplicateColor){
+                rand = Math.floor(Math.random() * allColors.length);
+                randColor = allColors[rand];
+                isDuplicateColor=colors.some(color => color.name === randColor.name)
+            }
             setColors(oldColors => [...colors, randColor]);
         },
         handleDrawerOpen : () => {
