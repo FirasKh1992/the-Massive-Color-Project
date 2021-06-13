@@ -50,7 +50,8 @@ function ColorPickerForm(props) {
                     margin="normal"
                     onChange={handleColorChange}
                     validators={["required", "isColorUnique", "isColorNameUnique"]}
-                    errorMessages={["Enter color name", "Color already used", "Color name must be unique"]} />
+                    errorMessages={["Enter color name", "Color already used", "Color name must be unique"]}
+                />
                 <Button
                     variant='contained'
                     type='submit'

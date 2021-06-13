@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
 import Palette from './Palette';
-import seedColors from './seedColors';
-import PaletteList from './PaletteList'
-import SingleColorPalette from './SingleColorPalette'
+import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
+import Page from './Page';
 import NewPaletteForm from './NewPaletteForm'
 
+import seedColors from './seedColors';
 import { generatePalette } from "./colorHelpers";
-import { Route, Switch } from 'react-router-dom';
-import useLocalStorageState from './hooks/useLocalStorageState'
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Page from './Page'
 
+
+import useLocalStorageState from './hooks/useLocalStorageState'
 function App() {
 
   const [palettes, setPalette] = useLocalStorageState("palettes", seedColors);
@@ -19,6 +21,7 @@ function App() {
       return palette.id === id;
     });
   }
+  
   function savePalette(Palette) {
     let newPaletteList = [...palettes, Palette];
     setPalette(newPaletteList);
@@ -67,7 +70,7 @@ function App() {
                         FindPalette(routeProps.match.params.id)
                       )}
                     />
-                    </Page>
+                  </Page>
                 )}
             />
             <Route
@@ -82,7 +85,7 @@ function App() {
                         FindPalette(routeProps.match.params.paletteId)
                       )}
                     />
-                    </Page>
+                  </Page>
                 )}
             />
           </Switch>
